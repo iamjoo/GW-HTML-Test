@@ -5,21 +5,42 @@
 class WorldsService {
   /**
    * @param {!angular.$http} $http
+   * @param {!angular.$q} $q
    */
-  constructor($http) {
+  constructor($http, $q) {
+    /** @private {!angular.$http} */
     this.http_ = $http;
+
+    /** @private {!angular.$q} */
+    this.q_ = $q;
+
+    /** @private {!Array<!Object>} */
+    this.worlds_;
+  }
+
+  /**
+   * Retrieves and returns the worlds from the API or the cached response.
+   * @return {!angular.$q.Promise<!Array<!Object>>}
+   */
+  getWorlds() {
+    if (this.worlds_) {
+      return this.q_.when(this.worlds_);
+    }
+
+    return this.retrieveWorlds_();
   }
 
   /**
    * Gets the worlds from the API.
    * @return {!angular.$q.Promise<!Array<!Object>>}
+   * @private
    */
-  getWorlds() {
+  retrieveWorlds_() {
     const path = constants.GwApiPath.WORLDS + '?' +
-        constants.ApiParams.WORLD_IDS + '=' + constants.ALL;
+        constants.ApiParams.IDS + '=' + constants.ALL;
 
     return this.http_.get(path).then(
-        (response) => response.data);
+        (response) => this.worlds_ = response.data);
   }
 }
 

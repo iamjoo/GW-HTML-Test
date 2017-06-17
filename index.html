@@ -34,11 +34,14 @@
 
     <!--  Controllers -->
     <script src="index_ctrl.js"></script>
+    <script src="achievements/achievements_ctrl.js"></script>
     <script src="build/build_ctrl.js"></script>
     <script src="worlds/worlds_ctrl.js"></script>
 
     <!-- Services -->
+    <script src="components/achievements/achievements_service.js"></script>
     <script src="components/build/build_service.js"></script>
+    <script src="components/items/items_service.js"></script>
     <script src="components/worlds/worlds_service.js"></script>
     <script src="components/util/constants.js"></script>
 
@@ -46,11 +49,12 @@
       <h2>Test</h2>
     </md-toolbar>
 
-    <md-nav-bar md-selected-nav-item="IndexCtrl.selectedTab" nav-bar-aria-label="navigation links" ng-cloak>
-      <md-nav-item md-nav-sref="home.build" name="build">Build</md-nav-item>
-      <md-nav-item md-nav-sref="home.worlds" name="worlds">Worlds</md-nav-item>
+    <md-nav-bar md-selected-nav-item="build" nav-bar-aria-label="navigation links" ng-cloak>
+      <md-nav-item md-nav-sref="build" name="build">Build</md-nav-item>
+      <md-nav-item md-nav-sref="worlds" name="worlds">Worlds</md-nav-item>
+      <md-nav-item md-nav-sref="achievements" name="achievements">Achievements</md-nav-item>
     </md-nav-bar>
-    {{IndexCtrl.selectedTab}}
+
     <div ui-view>
     </div>
 
@@ -102,56 +106,6 @@
           </table>
         </div>
 
-      </div>
-
-      <br><br>
-
-      <div class="row">
-
-        <div class="col-md-12">
-          <h4 class="navBar-header">Get Colors</h4>
-          <button ng-click="mainController.getColors()">Get colors</button>
-          <button ng-click="mainController.colors = ''">Reset</button>
-
-          <br><br>
-
-          <table class="dataTable">
-            <thead>
-              <tr>
-                <th colspan="8">Color Info</th>
-              </tr>
-              <tr>
-                <th colspan="2">Basic Info</th>
-                <th colspan="2">Cloth</th>
-                <th colspan="2">Leather</th>
-                <th colspan="2">Metal</th>
-              </tr>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>RGB</th>
-                <th>Color</th>
-                <th>RGB</th>
-                <th>Color</th>
-                <th>RGB</th>
-                <th>Color</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr ng-repeat="color in mainController.colors">
-                <td>{{ color.id }}</td>
-                <td>{{ color.name }}</td>
-                <td>{{ color.cloth.rgb }}</td>
-                <td ng-attr-style="background-color: rgb({{color.cloth.rgb[0]}}, {{color.cloth.rgb[1]}}, {{color.cloth.rgb[2]}})"></td>
-                <td>{{ color.leather.rgb }}</td>
-                <td ng-attr-style="background-color: rgb({{color.leather.rgb[0]}}, {{color.leather.rgb[1]}}, {{color.leather.rgb[2]}})"></td>
-                <td>{{ color.metal.rgb }}</td>
-                <td ng-attr-style="background-color: rgb({{color.metal.rgb[0]}}, {{color.metal.rgb[1]}}, {{color.metal.rgb[2]}})"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </div> -->
   </body>

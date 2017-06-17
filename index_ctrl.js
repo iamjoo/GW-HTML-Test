@@ -3,11 +3,7 @@
  * @final
  */
 class IndexCtrl {
-  constructor($scope) {
-    this.selectedTab = 'build';
-
-    console.log($scope);
-  }
+  constructor() {}
 }
 
 angular.module('mainApp.controllers.index', [])
