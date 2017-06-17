@@ -2,7 +2,7 @@ const app = angular.module('mainApp', [
   'ngMaterial',
   'md.data.table',
   'ui.router',
-  'mainApp.controllers.achievements',
+  'mainApp.controllers.dailyAchievements',
   'mainApp.controllers.build',
   'mainApp.controllers.index',
   'mainApp.controllers.worlds',
@@ -30,10 +30,10 @@ app.config([
           controller: WorldsCtrl,
           controllerAs: 'WorldsCtrl',
         })
-        .state('achievements', {
-          url: '/achievements',
-          templateUrl: 'achievements/achievements.html',
-          controller: AchievementsCtrl,
-          controllerAs: 'AchievementsCtrl',
+        .state('daily-achievements', {
+          url: '/dailyachievements',
+          templateUrl: 'achievements/daily_achievements.html',
+          controller: DailyAchievementsCtrl,
+          controllerAs: 'DailyAchievementsCtrl',
         });
 }]);

@@ -1,8 +1,8 @@
 /**
- * Controller for the achievements.html page.
+ * Controller for the daily_achievements.html page.
  * @final
  */
-class AchievementsCtrl {
+class DailyAchievementsCtrl {
   /**
    * @param {!angular.$q} $q
    * @param {!mainApp.services.achievements.AchievementsService}
@@ -28,16 +28,19 @@ class AchievementsCtrl {
   }
 
   getDailyAchievements() {
+    // Retrieves the daily achievement IDs
     this.achievementsService_.getDailyAchievements()
         .then((dailies) => {
           const achievementIds = [];
 
+          // Puts all the achievement IDs into an array to pass to the service.
           Object.keys(dailies).forEach((type) => {
             dailies[type].forEach((daily) => {
               achievementIds.push(daily.id);
             });
           });
 
+          // Gets detailed achievement information.
           this.achievementsService_.getAchievementInformation(achievementIds)
               .then((achievementInfo) => {
                 this.populateDailyAchievements_(dailies, achievementInfo)
@@ -60,26 +63,49 @@ class AchievementsCtrl {
     Object.keys(dailies).forEach((type) => {
       dailies[type].forEach((daily) => {
         const achievementInfo = achievementInfoMap.get(daily.id);
+        const request = this.retrieveRewards_(achievementInfo.rewards);
+        requests.push(request);
 
-        if (achievementInfo.rewards[0].type === constants.RewardType.ITEM) {
-          const request = this.itemsService_.getItemInformation(
-              achievementInfo.rewards[0].id);
-          requests.push(request);
-          request.then((response) => {
-            this.dailyAchievements.push(
-                new Achievement(
-                    daily.id, type, daily.level, achievementInfo,
-                    response.name));
-          });
-        } else {
+        request.then((reward) => {
           this.dailyAchievements.push(
               new Achievement(
-                  daily.id, type, daily.level, achievementInfo));
-        }
+                  daily.id, type, daily.level, achievementInfo, reward));
+        });
       });
     });
 
     this.q_.all(requests).then(() => deferred.resolve());
+
+    return deferred.promise;
+  }
+
+  /**
+   * Retrieves rewards.
+   * @param {!Object} rewards
+   * @return {!angular.$q.Promise<!AchievementReward>}
+   */
+  retrieveRewards_(rewards) {
+    const deferred = this.q_.defer();
+    const requests = [];
+    const achievementReward = new AchievementReward();
+
+    rewards.forEach((reward) => {
+      if (reward.type === constants.RewardType.ITEM) {
+        const request = this.itemsService_.getItemInformation(reward.id);
+        requests.push(request);
+        request.then((response) => {
+          achievementReward.item = response;
+        });
+      }
+
+      if (reward.type === constants.RewardType.COINS) {
+        const request = this.q_.when(reward.count);
+        requests.push(request);
+        request.then(achievementReward.coins = reward.count);
+      }
+    });
+
+    this.q_.all(requests).then(() => deferred.resolve(achievementReward));
 
     return deferred.promise;
   }
@@ -125,66 +151,5 @@ class AchievementsCtrl {
   }
 }
 
-class Achievement {
-  /**
-   * @param {number} id
-   * @param {string} type
-   * @param {!Object} levelInfo
-   * @param {!Object} achievementInfo
-   * @param {string=} rewardItem
-   */
-  constructor(id, type, levelInfo, achievementInfo, rewardItem = '') {
-    /**
-     * The type of achievement (PvE, PvP, etc.).
-     * @type {string}
-     */
-    this.type = this.formatType_(type);
-
-    /** @type {number} */
-    this.id = id;
-
-    /** @type {!Object} */
-    this.level = {
-      min: levelInfo.min,
-      max: levelInfo.max,
-    };
-
-    /** @type {!Object} */
-    this.achievementInfo = achievementInfo;
-
-    this.rewardItem = rewardItem;
-  }
-
-  /**
-   * Formats the type.
-   * @param {string} type
-   * @return {string}
-   * @private
-   */
-  formatType_(type) {
-    let formattedType;
-
-    switch (type) {
-      case 'pve':
-        formattedType = 'PvE';
-        break;
-      case 'pvp':
-        formattedType = 'PvP';
-        break;
-      case 'wvw':
-        formattedType = 'WvW';
-        break;
-      case 'fractals':
-        formattedType = 'Fractals';
-        break;
-      default:
-        formattedType = type;
-        break;
-    }
-
-    return formattedType;
-  }
-};
-
-angular.module('mainApp.controllers.achievements', [])
-    .controller('achievementsCtrl', AchievementsCtrl);
+angular.module('mainApp.controllers.dailyAchievements', [])
+    .controller('dailyAchievementsCtrl', DailyAchievementsCtrl);

@@ -8,8 +8,11 @@
 
     <!-- md data table style sheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.css">
+
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
-    <title>GW2 Stuff on Desktop</title>
+
+    <title>GW2 Stuff</title>
   </head>
 
   <body>
@@ -34,7 +37,7 @@
 
     <!--  Controllers -->
     <script src="index_ctrl.js"></script>
-    <script src="achievements/achievements_ctrl.js"></script>
+    <script src="achievements/daily_achievements_ctrl.js"></script>
     <script src="build/build_ctrl.js"></script>
     <script src="worlds/worlds_ctrl.js"></script>
 
@@ -43,7 +46,11 @@
     <script src="components/build/build_service.js"></script>
     <script src="components/items/items_service.js"></script>
     <script src="components/worlds/worlds_service.js"></script>
+
+    <!-- Utility files -->
     <script src="components/util/constants.js"></script>
+    <script src="components/util/models/achievement.js"></script>
+    <script src="components/util/models/achievement_reward.js"></script>
 
     <md-toolbar>
       <h2>Test</h2>
@@ -52,14 +59,13 @@
     <md-nav-bar md-selected-nav-item="build" nav-bar-aria-label="navigation links" ng-cloak>
       <md-nav-item md-nav-sref="build" name="build">Build</md-nav-item>
       <md-nav-item md-nav-sref="worlds" name="worlds">Worlds</md-nav-item>
-      <md-nav-item md-nav-sref="achievements" name="achievements">Achievements</md-nav-item>
+      <md-nav-item md-nav-sref="daily-achievements" name="daily-achievements">Daily Achievements</md-nav-item>
     </md-nav-bar>
 
     <div ui-view>
     </div>
 
     <!-- <div class="container">
-
       <div class="row">
         <div class="col-md-6">
           <h4 class="navBar-header">Gem to Gold Exchange</h4>
@@ -67,45 +73,6 @@
           <p>100 gems sell for {{ mainController.gemsToGold_Gold }} <img src="https://wiki.guildwars2.com/images/d/d1/Gold_coin.png" /> {{ mainController.gemsToGold_Silver }} <img src="https://wiki.guildwars2.com/images/3/3c/Silver_coin.png" /></p>
           <p>100 gems cost {{ mainController.goldToGems_Gold }} <img src="https://wiki.guildwars2.com/images/d/d1/Gold_coin.png" /> {{ mainController.goldToGems_Silver }} <img src="https://wiki.guildwars2.com/images/3/3c/Silver_coin.png" /></p>
         </div>
-
-      </div>
-
-      <br><br>
-
-      <div class="row">
-        <div class="col-md-6">
-          <h4 class="navBar-header">Get Items</h4>
-          <button ng-click="mainController.getItems()">Get items</button>
-          <button ng-click="mainController.items = ''">Reset</button>
-
-          <br><br>
-
-          <table class="dataTable">
-            <thead>
-              <tr>
-                <th colspan="5">Item Info</th>
-              </tr>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Rarity</th>
-                <th>Icon</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr ng-repeat="item in mainController.items">
-                <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.type }}</td>
-                <td>{{ item.rarity }}</td>
-                <td><img ng-src="{{ item.icon }}" /></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
       </div>
     </div> -->
   </body>

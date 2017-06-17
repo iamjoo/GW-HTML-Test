@@ -16,7 +16,10 @@ constants.ApiParams = {
 };
 
 constants.RewardType = {
+  COINS: 'Coins',
   ITEM: 'Item',
+  MASTERY: 'Mastery',
+  TITLE: 'Title',
 };
 
 constants.ALL = 'all';
