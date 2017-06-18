@@ -19,7 +19,19 @@ class WorldsService {
   }
 
   /**
-   * Retrieves and returns the worlds from the API or the cached response.
+   * Retrieves and returns a world from the API.
+   * @param {string} worldId
+   * @return {!angular.$q.Promise<!Object>}
+   */
+  getWorld(worldId) {
+    const path = constants.GwApiPath.WORLDS + '?' +
+        constants.ApiParams.IDS + '=' + worldId;
+
+    return this.http_.get(path).then((response) => response.data[0]);
+  }
+
+  /**
+   * Retrieves and returns all worlds from the API or the cached response.
    * @return {!angular.$q.Promise<!Array<!Object>>}
    */
   getWorlds() {
@@ -31,7 +43,7 @@ class WorldsService {
   }
 
   /**
-   * Gets the worlds from the API.
+   * Gets all worlds from the API.
    * @return {!angular.$q.Promise<!Array<!Object>>}
    * @private
    */

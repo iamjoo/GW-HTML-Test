@@ -1,0 +1,46 @@
+<h3>Basic Info</h3>
+<p>Account Name: {{AccountInfoCtrl.account.info.name}}</p>
+<p>Play Time: {{AccountInfoCtrl.account.playTime}}</p>
+<p>World: {{AccountInfoCtrl.account.world.name}}</p>
+<p>Fractal Level: {{AccountInfoCtrl.account.info.fractal_level}}</p>
+<p>WvW Rank: {{AccountInfoCtrl.account.info.wvw_rank}}</p>
+<p>Date Created: {{AccountInfoCtrl.account.createDate}}</p>
+
+<h3>Characters</h3>
+<md-table-container>
+  <table md-table>
+    <thead md-head>
+      <tr md-row>
+        <th md-column>Name</th>
+        <th md-column>Level</th>
+        <th md-column>Profession</th>
+        <th md-column>Crafting</th>
+        <th md-column>Race</th>
+        <th md-column>Gender</th>
+        <th md-column>Deaths</th>
+        <th md-column>Play Time</th>
+        <th md-column>Date Created</th>
+      </tr>
+    </thead>
+    <tbody md-body>
+      <tr md-row ng-repeat="character in AccountInfoCtrl.characters | orderBy: '-info.age'">
+        <td md-cell>{{character.info.name}}</td>
+        <td md-cell>{{character.info.level}}</td>
+        <td md-cell>
+          <img ng-src="{{character.professionIconUrl}}" alt="Icon" class="gw-icon" />
+          {{character.info.profession}}
+        </td>
+        <td md-cell>
+          <p ng-repeat="craft in character.info.crafting">
+            {{craft.discipline}} ({{craft.rating}})
+          </p>
+        </td>
+        <td md-cell>{{character.info.race}}</td>
+        <td md-cell>{{character.info.gender}}</td>
+        <td md-cell>{{character.info.deaths | number:0}}</td>
+        <td md-cell>{{character.playTime}}</td>
+        <td md-cell>{{character.createDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>

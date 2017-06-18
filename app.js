@@ -2,12 +2,16 @@ const app = angular.module('mainApp', [
   'ngMaterial',
   'md.data.table',
   'ui.router',
-  'mainApp.controllers.dailyAchievements',
+  'mainApp.controllers.accountInfo',
   'mainApp.controllers.build',
+  'mainApp.controllers.dailyAchievements',
   'mainApp.controllers.index',
   'mainApp.controllers.worlds',
+  'mainApp.services.accounts',
   'mainApp.services.achievements',
   'mainApp.services.build',
+  'mainApp.services.characters',
+  'mainApp.services.files',
   'mainApp.services.items',
   'mainApp.services.worlds',
 ]);
@@ -35,5 +39,11 @@ app.config([
           templateUrl: 'achievements/daily_achievements.html',
           controller: DailyAchievementsCtrl,
           controllerAs: 'DailyAchievementsCtrl',
+        })
+        .state('account-info', {
+          url: '/accountinfo',
+          templateUrl: 'account_info/account_info.html',
+          controller: AccountInfoCtrl,
+          controllerAs: 'AccountInfoCtrl',
         });
 }]);

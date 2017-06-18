@@ -1,3 +1,7 @@
+/**
+ * A model for storing achievement information.
+ * @final
+ */
 class Achievement {
   /**
    * @param {number} id
@@ -58,4 +62,4 @@ class Achievement {
 
     return formattedType;
   }
-};
+}

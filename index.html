@@ -37,20 +37,27 @@
 
     <!--  Controllers -->
     <script src="index_ctrl.js"></script>
+    <script src="account_info/account_info_ctrl.js"></script>
     <script src="achievements/daily_achievements_ctrl.js"></script>
     <script src="build/build_ctrl.js"></script>
     <script src="worlds/worlds_ctrl.js"></script>
 
     <!-- Services -->
+    <script src="components/accounts/accounts_service.js"></script>
     <script src="components/achievements/achievements_service.js"></script>
     <script src="components/build/build_service.js"></script>
+    <script src="components/characters/characters_service.js"></script>
+    <script src="components/files/files_service.js"></script>
     <script src="components/items/items_service.js"></script>
     <script src="components/worlds/worlds_service.js"></script>
 
     <!-- Utility files -->
     <script src="components/util/constants.js"></script>
+    <script src="components/util/util.js"></script>
+    <script src="components/util/models/account.js"></script>
     <script src="components/util/models/achievement.js"></script>
     <script src="components/util/models/achievement_reward.js"></script>
+    <script src="components/util/models/character.js"></script>
 
     <md-toolbar>
       <h2>Test</h2>
@@ -59,10 +66,15 @@
     <md-nav-bar md-selected-nav-item="build" nav-bar-aria-label="navigation links" ng-cloak>
       <md-nav-item md-nav-sref="build" name="build">Build</md-nav-item>
       <md-nav-item md-nav-sref="worlds" name="worlds">Worlds</md-nav-item>
-      <md-nav-item md-nav-sref="daily-achievements" name="daily-achievements">Daily Achievements</md-nav-item>
+      <md-nav-item md-nav-sref="daily-achievements" name="daily-achievements">
+        Daily Achievements
+      </md-nav-item>
+      <md-nav-item md-nav-sref="account-info" name="account-info">
+        Account Info
+      </md-nav-item>
     </md-nav-bar>
 
-    <div ui-view>
+    <div ui-view layout-padding>
     </div>
 
     <!-- <div class="container">

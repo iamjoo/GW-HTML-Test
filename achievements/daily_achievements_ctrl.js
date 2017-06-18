@@ -27,26 +27,29 @@ class DailyAchievementsCtrl {
     this.getDailyAchievements();
   }
 
+  /**
+   * Gets daily achievements and their rewards.
+   */
   getDailyAchievements() {
     // Retrieves the daily achievement IDs
-    this.achievementsService_.getDailyAchievements()
-        .then((dailies) => {
-          const achievementIds = [];
+    this.achievementsService_.getDailyAchievements().then((dailies) => {
+      const achievementIds = [];
 
-          // Puts all the achievement IDs into an array to pass to the service.
-          Object.keys(dailies).forEach((type) => {
-            dailies[type].forEach((daily) => {
-              achievementIds.push(daily.id);
-            });
+      // Puts all the achievement IDs into an array to pass to the service.
+      Object.keys(dailies).forEach((type) => {
+        dailies[type].forEach((daily) => achievementIds.push(daily.id));
+      });
+
+      // Gets detailed achievement information.
+      this.achievementsService_.getAchievementInformation(achievementIds)
+          .then((achievementInfo) => {
+            this.populateDailyAchievements_(dailies, achievementInfo)
+                .then(() => {
+                  this.sortDailyAchievements_();
+                  this.isReady = true;
+                });
           });
-
-          // Gets detailed achievement information.
-          this.achievementsService_.getAchievementInformation(achievementIds)
-              .then((achievementInfo) => {
-                this.populateDailyAchievements_(dailies, achievementInfo)
-                    .then(() => this.sortDailyAchievements_());
-              });
-        });
+    });
   }
 
   /**
@@ -54,6 +57,7 @@ class DailyAchievementsCtrl {
    * @param {!Array<!Object>} dailies
    * @param {!Map<number, !Object>} achievementInfoMap
    * @return {!angular.$q.Promise}
+   * @private
    */
   populateDailyAchievements_(dailies, achievementInfoMap) {
     const deferred = this.q_.defer();
@@ -83,6 +87,7 @@ class DailyAchievementsCtrl {
    * Retrieves rewards.
    * @param {!Object} rewards
    * @return {!angular.$q.Promise<!AchievementReward>}
+   * @private
    */
   retrieveRewards_(rewards) {
     const deferred = this.q_.defer();
@@ -146,8 +151,6 @@ class DailyAchievementsCtrl {
         }
       }
     });
-
-    this.isReady = true;
   }
 }
 
