@@ -18,5 +18,8 @@ class Character {
 
     /** @type {string} */
     this.professionIconUrl;
+
+    /** @type {!Equipment} */
+    this.equipment;
   }
 }
