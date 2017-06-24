@@ -10,7 +10,7 @@ constants.GwApiPath = {
   DAILY_ACHIEVEMENTS: 'https://api.guildwars2.com/v2/achievements/daily',
   FILES: 'https://api.guildwars2.com/v2/files',
   GEM_EXCHANGE: 'https://api.guildwars2.com/v2/commerce/exchange/gems',
-  ITEM: 'https://api.guildwars2.com/v2/items/',
+  ITEMS: 'https://api.guildwars2.com/v2/items',
   WORLDS: 'https://api.guildwars2.com/v2/worlds',
 };
 
@@ -37,7 +37,32 @@ constants.ProfessionId = {
   REVENANT: 'icon_revenant_big',
   THIEF: 'icon_thief_big',
   WARRIOR: 'icon_warrior_big',
-}
+};
+
+constants.EquipmentSlot = {
+  HELM_AQUATIC: 'HelmAquatic',
+  BACKPACK: 'Backpack',
+  COAT: 'Coat',
+  BOOTS: 'Boots',
+  GLOVES: 'Gloves',
+  HELM: 'Helm',
+  LEGGINGS: 'Leggings',
+  SHOULDERS: 'Shoulders',
+  ACCESSORY_1: 'Accessory1',
+  ACCESSORY_2: 'Accessory2',
+  RING_1: 'Ring1',
+  RING_2: 'Ring2',
+  AMULET: 'Amulet',
+  WEAPON_AQUATIC_A: 'WeaponAquaticA',
+  WEAPON_AQUATIC_B: 'WeaponAquaticB',
+  WEAPON_A_1: 'WeaponA1',
+  WEAPON_A_2: 'WeaponA2',
+  WEAPON_B_1: 'WeaponB1',
+  WEAPON_B_2: 'WeaponB2',
+  SICKLE: 'Sickle',
+  AXE: 'Axe',
+  PICK: 'Pick',
+};
 
 constants.ALL = 'all';
 
