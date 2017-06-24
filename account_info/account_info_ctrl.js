@@ -7,9 +7,12 @@ class AccountInfoCtrl {
    * @param {!mainApp.services.accounts.AccountsService} accountsService
    * @param {!mainApp.services.characters.CharactersService} charactersService
    * @param {!mainApp.services.files.FilesService} filesService
+   * @param {!mainApp.services.items.ItemsService} itemsService
    * @param {!mainApp.services.worlds.WorldsService} worldsService
    */
-  constructor(accountsService, charactersService, filesService, worldsService) {
+  constructor(
+      accountsService, charactersService, filesService, itemsService,
+      worldsService) {
     /** @private {!mainApp.services.accounts.AccountsService} */
     this.accountsService_ = accountsService;
 
@@ -18,6 +21,9 @@ class AccountInfoCtrl {
 
     /** @private {!mainApp.services.files.FilesService} */
     this.filesService_ = filesService;
+
+    /** @private {!mainApp.services.items.ItemsService} */
+    this.itemsService_ = itemsService;
 
     /** @private {!mainApp.services.worlds.WorldsService} */
     this.worldsService_ = worldsService;
@@ -52,6 +58,24 @@ class AccountInfoCtrl {
     this.charactersService_.getCharacters().then((characters) => {
       this.characters = characters.map((character) => new Character(character));
       this.getProfessionIcons_();
+      this.getEquipment_();
+    });
+  }
+
+  /**
+   * Gets equipment.
+   * @private
+   */
+  getEquipment_() {
+    this.characters.forEach((character) => {
+      const equipmentIds = character.info.equipment.map(
+          (item) => {
+            return item.id;
+          });
+
+      this.itemsService_.getItemsInformation(equipmentIds).then((resp) => {
+        character.equipment = new Equipment(character.info.equipment, resp);
+      });
     });
   }
 
