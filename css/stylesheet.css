@@ -1,3 +1,35 @@
 .gw-icon {
   height: 24px;
 }
+
+table.md-table td.md-cell.gw-Junk {
+  color: #AAA;
+}
+
+table.md-table td.md-cell.gw-Basic {
+  color: #000;
+}
+
+table.md-table td.md-cell.gw-Fine {
+  color: #62A4DA;
+}
+
+table.md-table td.md-cell.gw-Masterwork {
+  color: #1a9306;
+}
+
+table.md-table td.md-cell.gw-Rare {
+  color: #fcd00b;
+}
+
+table.md-table td.md-cell.gw-Exotic {
+  color: #ffa405;
+}
+
+table.md-table td.md-cell.gw-Ascended {
+  color: #fb3e8d;
+}
+
+table.md-table td.md-cell.gw-Legendary {
+  color: #4C139D;
+}
