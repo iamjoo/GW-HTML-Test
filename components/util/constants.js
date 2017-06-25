@@ -64,6 +64,11 @@ constants.EquipmentSlot = {
   PICK: 'Pick',
 };
 
+constants.ItemType = {
+  ARMOR: 'Armor',
+  WEAPON: 'Weapon',
+};
+
 constants.ALL = 'all';
 
 constants.API_KEY =
