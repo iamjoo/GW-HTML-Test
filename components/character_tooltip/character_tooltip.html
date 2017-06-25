@@ -1,0 +1,13 @@
+<div ng-if="CharacterTooltipCtrl.character" layout="column" layout-align="start stretch"
+     md-whiteframe="5" class="gw-tooltip">
+  <h4>{{CharacterTooltipCtrl.character.info.name}}</h4>
+  <span>
+    Level {{CharacterTooltipCtrl.character.info.level}}
+    {{CharacterTooltipCtrl.character.info.gender}}
+    {{CharacterTooltipCtrl.character.info.race}}
+    {{CharacterTooltipCtrl.character.info.profession}}
+  </span>
+  <span>Died {{CharacterTooltipCtrl.character.info.deaths | number:0}} times</span>
+  <span>Played for {{CharacterTooltipCtrl.character.playTime}}</span>
+  <span>Created on {{CharacterTooltipCtrl.character.createDate}}</span>
+</div>
