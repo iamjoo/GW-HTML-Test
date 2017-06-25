@@ -28,7 +28,7 @@ Util.formatAge = function(ageInSeconds) {
   let formattedAge = '';
   formattedAge += numYears > 0 ? numYears + ' years, ' : '';
   formattedAge += numDays > 0 ? numDays + ' days, ' : '';
-  formattedAge += numHours + ' hours and ' + numMinutes + ' minutes.';
+  formattedAge += numHours + ' hours and ' + numMinutes + ' minutes';
 
   return formattedAge;
 }
