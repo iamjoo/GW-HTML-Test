@@ -4,7 +4,7 @@
  */
 class ItemTooltipCtrl {
   constructor() {
-    /** @type {!Object} */
+    /** @type {?Object} */
     this.item;
 
     /** @type {!Object} */
