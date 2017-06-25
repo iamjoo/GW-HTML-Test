@@ -43,11 +43,33 @@ class AccountInfoCtrl {
   }
 
   /**
+   * Shows the character tooltip.
+   * @param {!angular.$event} event
+   * @param {!Character} character
+   */
+  showCharacterTooltip(event, character) {
+    const tooltip = this.document_.find('character-tooltip')[0];
+    tooltip.style.position = 'absolute';
+    tooltip.style.left = event.pageX + 10 + 'px';
+    tooltip.style.top = event.pageY + 'px';
+    angular.element(tooltip).controller('characterTooltip').character =
+        character;
+  }
+
+  /**
+   * Hides the character tooltip.
+   */
+  hideCharacterTooltip() {
+    const tooltip = this.document_.find('character-tooltip');
+    angular.element(tooltip[0]).controller('characterTooltip').character = null;
+  }
+
+  /**
    * Shows the item tooltip.
    * @param {!angular.$event} event
    * @param {!Object} item
    */
-  showTooltip(event, item) {
+  showItemTooltip(event, item) {
     const x = event.view.outerWidth - event.pageX > 200 ? event.pageX + 10 :
         event.pageX - 200;
 
@@ -61,7 +83,7 @@ class AccountInfoCtrl {
   /**
    * Hides the item tooltip.
    */
-  hideTooltip() {
+  hideItemTooltip() {
     const tooltip = this.document_.find('item-tooltip');
     angular.element(tooltip[0]).controller('itemTooltip').item = null;
   }
