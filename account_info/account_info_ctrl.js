@@ -3,7 +3,8 @@
  * @final
  */
 class AccountInfoCtrl {
-    /**
+  /**
+   * @param {!angular.$document} $document
    * @param {!mainApp.services.accounts.AccountsService} accountsService
    * @param {!mainApp.services.characters.CharactersService} charactersService
    * @param {!mainApp.services.files.FilesService} filesService
@@ -11,8 +12,11 @@ class AccountInfoCtrl {
    * @param {!mainApp.services.worlds.WorldsService} worldsService
    */
   constructor(
-      accountsService, charactersService, filesService, itemsService,
+      $document, accountsService, charactersService, filesService, itemsService,
       worldsService) {
+    /** @private {!angular.$document} */
+    this.document_ = $document;
+
     /** @private {!mainApp.services.accounts.AccountsService} */
     this.accountsService_ = accountsService;
 
@@ -36,6 +40,30 @@ class AccountInfoCtrl {
 
     this.getAccount_();
     this.getCharacters_();
+  }
+
+  /**
+   * Shows the item tooltip.
+   * @param {!angular.$event} event
+   * @param {!Object} item
+   */
+  showTooltip(event, item) {
+    const x = event.view.outerWidth - event.pageX > 200 ? event.pageX + 10 :
+        event.pageX - 200;
+
+    const tooltip = this.document_.find('item-tooltip')[0];
+    tooltip.style.position = 'absolute';
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = event.pageY + 'px';
+    angular.element(tooltip).controller('itemTooltip').item = item;
+  }
+
+  /**
+   * Hides the item tooltip.
+   */
+  hideTooltip() {
+    const tooltip = this.document_.find('item-tooltip');
+    angular.element(tooltip[0]).controller('itemTooltip').item = null;
   }
 
   /**
