@@ -1,7 +1,13 @@
+/*
+ * Icon styling
+ */
 .gw-icon {
   height: 24px;
 }
 
+/*
+ * Item rarity colors
+ */
 table.md-table td.md-cell.gw-Junk {
   color: #AAA;
 }
@@ -32,4 +38,51 @@ table.md-table td.md-cell.gw-Ascended {
 
 table.md-table td.md-cell.gw-Legendary {
   color: #4C139D;
+}
+
+/*
+ * Tooltip styling
+ */
+.gw-tooltip {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 100;
+}
+
+img.gw-tooltip-icon {
+  border-style: solid;
+  border-width: 2px;
+}
+
+img.gw-Junk {
+  border-color: #AAA;
+}
+
+img.gw-Basic {
+  border-color: #000;
+}
+
+img.gw-Fine {
+  border-color: #62A4DA;
+}
+
+img.gw-Masterwork {
+  border-color: #1a9306;
+}
+
+img.gw-Rare {
+  border-color: #fcd00b;
+}
+
+img.gw-Exotic {
+  border-color: #ffa405;
+}
+
+img.gw-Ascended {
+  border-color: #fb3e8d;
+}
+
+img.gw-Legendary {
+  border-color: #4C139D;
 }
