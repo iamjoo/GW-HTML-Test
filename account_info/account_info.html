@@ -6,6 +6,8 @@
 <p>WvW Rank: {{AccountInfoCtrl.account.info.wvw_rank}}</p>
 <p>Date Created: {{AccountInfoCtrl.account.createDate}}</p>
 
+<item-tooltip></item-tooltip>
+
 <h3>Characters</h3>
 <md-table-container>
   <table md-table>
@@ -51,6 +53,7 @@
     <thead md-head>
       <tr md-row>
         <th md-column>Name</th>
+        <th md-column>Profession</th>
         <th md-column>Helm</th>
         <th md-column>Armor</th>
         <th md-column>Shoulders</th>
@@ -61,40 +64,132 @@
         <th md-column>Weapon 1 Offhand</th>
         <th md-column>Weapon 2 Main</th>
         <th md-column>Weapon 2 Offhand</th>
+        <th md-column>Backpack</th>
+        <th md-column>Amulet</th>
+        <th md-column>Accessory 1</th>
+        <th md-column>Accessory 2</th>
+        <th md-column>Ring 1</th>
+        <th md-column>Ring 2</th>
       </tr>
     </thead>
     <tbody md-body>
       <tr md-row ng-repeat="character in AccountInfoCtrl.characters | orderBy: '-info.age'">
         <td md-cell>{{character.info.name}}</td>
-        <td md-cell ng-class="'gw-' + character.equipment.helm.rarity">
-          {{character.equipment.helm.name}}
+        <td md-cell>
+          <img ng-src="{{character.professionIconUrl}}" alt="Icon" class="gw-icon" />
+          {{character.info.profession}}
         </td>
-        <td md-cell ng-class="'gw-' + character.equipment.helm.rarity">
-          {{character.equipment.coat.name}}
+        <td md-cell ng-class="'gw-' + character.equipment.helm.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.helm)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.helm">
+            {{character.equipment.helm.name}} ({{character.equipment.helm.level}})
+          </span>
         </td>
-        <td md-cell ng-class="'gw-' + character.equipment.shoulders.rarity">
-          {{character.equipment.shoulders.name}}
+        <td md-cell ng-class="'gw-' + character.equipment.coat.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.coat)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.coat">
+            {{character.equipment.coat.name}} ({{character.equipment.coat.level}})
+          </span>
         </td>
-        <td md-cell ng-class="'gw-' + character.equipment.gloves.rarity">
-          {{character.equipment.gloves.name}}
+        <td md-cell ng-class="'gw-' + character.equipment.shoulders.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.shoulders)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.shoulders">
+            {{character.equipment.shoulders.name}} ({{character.equipment.shoulders.level}})
+          </span>
         </td>
-        <td md-cell ng-class="'gw-' + character.equipment.leggings.rarity">
-          {{character.equipment.leggings.name}}
+        <td md-cell ng-class="'gw-' + character.equipment.gloves.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.gloves)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.gloves">
+            {{character.equipment.gloves.name}} ({{character.equipment.gloves.level}})
+          </span>
         </td>
-        <td md-cell ng-class="'gw-' + character.equipment.boots.rarity">
-          {{character.equipment.boots.name}}
+        <td md-cell ng-class="'gw-' + character.equipment.leggings.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.leggings)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.leggings">
+            {{character.equipment.leggings.name}} ({{character.equipment.leggings.level}})
+          </span>
         </td>
-        <td md-cell ng-class="'gw-' + character.equipment.weaponSet1Main.rarity">
-          {{character.equipment.weaponSet1Main.name}}
+        <td md-cell ng-class="'gw-' + character.equipment.boots.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.boots)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.boots">
+            {{character.equipment.boots.name}} ({{character.equipment.boots.level}})
+          </span>
         </td>
-        <td md-cell ng-class="'gw-' + character.equipment.weaponSet1Offhand.rarity">
-          {{character.equipment.weaponSet1Offhand.name}}
+        <td md-cell ng-class="'gw-' + character.equipment.weaponSet1Main.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.weaponSet1Main)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.weaponSet1Main">
+            {{character.equipment.weaponSet1Main.name}} ({{character.equipment.weaponSet1Main.level}})
+          </span>
         </td>
-        <td md-cell ng-class="'gw-' + character.equipment.weaponSet2Main.rarity">
-          {{character.equipment.weaponSet2Main.name}}
+        <td md-cell ng-class="'gw-' + character.equipment.weaponSet1Offhand.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.weaponSet1Offhand)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.weaponSet1Offhand">
+            {{character.equipment.weaponSet1Offhand.name}} ({{character.equipment.weaponSet1Offhand.level}})
+          </span>
         </td>
-        <td md-cell ng-class="'gw-' + character.equipment.weaponSet2Offhand.rarity">
-          {{character.equipment.weaponSet2Offhand.name}}
+        <td md-cell ng-class="'gw-' + character.equipment.weaponSet2Main.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.weaponSet2Main)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.weaponSet2Main">
+            {{character.equipment.weaponSet2Main.name}} ({{character.equipment.weaponSet2Main.level}})
+          </span>
+        </td>
+        <td md-cell ng-class="'gw-' + character.equipment.weaponSet2Offhand.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.weaponSet2Offhand)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.weaponSet2Offhand">
+            {{character.equipment.weaponSet2Offhand.name}} ({{character.equipment.weaponSet2Offhand.level}})
+          </span>
+        </td>
+        <td md-cell ng-class="'gw-' + character.equipment.backpack.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.backpack)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.backpack">
+            {{character.equipment.backpack.name}} ({{character.equipment.backpack.level}})
+          </span>
+        </td>
+        <td md-cell ng-class="'gw-' + character.equipment.amulet.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.amulet)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.amulet">
+            {{character.equipment.amulet.name}} ({{character.equipment.amulet.level}})
+          </span>
+        </td>
+        <td md-cell ng-class="'gw-' + character.equipment.accessory1.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.accessory1)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.accessory1">
+            {{character.equipment.accessory1.name}} ({{character.equipment.accessory1.level}})
+          </span>
+        </td>
+        <td md-cell ng-class="'gw-' + character.equipment.accessory2.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.accessory2)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.accessory2">
+            {{character.equipment.accessory2.name}} ({{character.equipment.accessory2.level}})
+          </span>
+        </td>
+        <td md-cell ng-class="'gw-' + character.equipment.ring1.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.ring1)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.ring1">
+            {{character.equipment.ring1.name}} ({{character.equipment.ring1.level}})
+          </span>
+        </td>
+        <td md-cell ng-class="'gw-' + character.equipment.ring2.rarity"
+            ng-mouseenter="AccountInfoCtrl.showTooltip($event, character.equipment.ring2)"
+            ng-mouseleave="AccountInfoCtrl.hideTooltip()">
+          <span ng-show="character.equipment.ring2">
+            {{character.equipment.ring2.name}} ({{character.equipment.ring2.level}})
+          </span>
         </td>
       </tr>
     </tbody>
