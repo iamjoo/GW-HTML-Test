@@ -2,6 +2,7 @@ const app = angular.module('mainApp', [
   'ngMaterial',
   'md.data.table',
   'ui.router',
+  'mainApp.components.itemTooltip',
   'mainApp.controllers.accountInfo',
   'mainApp.controllers.build',
   'mainApp.controllers.dailyAchievements',
