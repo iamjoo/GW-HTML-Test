@@ -50,6 +50,10 @@ table.md-table td.md-cell.gw-Legendary {
   z-index: 100;
 }
 
+.gw-tooltip h4 {
+  margin: 0;
+}
+
 img.gw-tooltip-icon {
   border-style: solid;
   border-width: 2px;
