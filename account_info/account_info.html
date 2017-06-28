@@ -17,6 +17,7 @@
         <th md-column>Level</th>
         <th md-column>Profession</th>
         <th md-column>Crafting</th>
+        <th md-column>Gathering Tools</th>
         <th md-column>Helm</th>
         <th md-column>Armor</th>
         <th md-column>Shoulders</th>
@@ -51,6 +52,11 @@
           <p ng-repeat="craft in character.info.crafting">
             {{craft.discipline}} ({{craft.rating}})
           </p>
+        </td>
+        <td md-cell>
+          <span ng-if="character.equipment.axe">Axe: {{character.equipment.axe.name}}<br></span>
+          <span ng-if="character.equipment.pick">Pick: {{character.equipment.pick.name}}<br></span>
+          <span ng-if="character.equipment.sickle">Sickle: {{character.equipment.sickle.name}}<br></span>
         </td>
         <td md-cell ng-class="'gw-' + character.equipment.helm.rarity"
             ng-mouseenter="AccountInfoCtrl.showItemTooltip($event, character.equipment.helm)"
