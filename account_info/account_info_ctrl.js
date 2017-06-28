@@ -5,6 +5,7 @@
 class AccountInfoCtrl {
   /**
    * @param {!angular.$document} $document
+   * @param {!angular.$q} $q
    * @param {!mainApp.services.accounts.AccountsService} accountsService
    * @param {!mainApp.services.characters.CharactersService} charactersService
    * @param {!mainApp.services.files.FilesService} filesService
@@ -12,10 +13,13 @@ class AccountInfoCtrl {
    * @param {!mainApp.services.worlds.WorldsService} worldsService
    */
   constructor(
-      $document, accountsService, charactersService, filesService, itemsService,
-      worldsService) {
+      $document, $q, accountsService, charactersService, filesService,
+      itemsService, worldsService) {
     /** @private {!angular.$document} */
     this.document_ = $document;
+
+    /** @private {!angular.$q} */
+    this.q_ = $q;
 
     /** @private {!mainApp.services.accounts.AccountsService} */
     this.accountsService_ = accountsService;
@@ -127,6 +131,46 @@ class AccountInfoCtrl {
         character.equipment = new Equipment(character.info.equipment, resp);
       });
     });
+  }
+
+  getInventory_() {
+    let items = new Map();
+    const index = 2;
+    this.characters[index].info.bags.forEach((bag) => {
+      bag.inventory.forEach((item) => {
+        if (!item) {
+          return;
+        }
+
+        if (!items.has(item.id)) {
+          const newItem = {
+            item: null,
+            count: 0,
+          };
+
+          items.set(item.id, newItem);
+        }
+
+        items.get(item.id).count += item.count;
+      });
+    });
+
+    const requests = [];
+
+    items.forEach((item, itemId) => {
+      const request = this.itemsService_.getItemInformation(itemId);
+      requests.push(request);
+
+      request.then((response) => {
+        item.item = response;
+      });
+    });
+
+    this.q_.all(requests).then(() => {
+      console.log(items);
+    });
+
+    console.log(this.characters[index].info.name);
   }
 
   /**
