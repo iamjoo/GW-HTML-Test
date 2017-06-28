@@ -94,6 +94,18 @@ class Equipment {
     this.ring2 =
       this.getSlottedItem_(
             constants.EquipmentSlot.RING_2, equipmentSummaries, allEquipment);
+
+    this.axe =
+      this.getSlottedItem_(
+            constants.EquipmentSlot.AXE, equipmentSummaries, allEquipment);
+
+    this.sickle =
+      this.getSlottedItem_(
+            constants.EquipmentSlot.SICKLE, equipmentSummaries, allEquipment);
+
+    this.pick =
+      this.getSlottedItem_(
+            constants.EquipmentSlot.PICK, equipmentSummaries, allEquipment);
   }
 
   /**
