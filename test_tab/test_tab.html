@@ -1,0 +1,32 @@
+<div layout="row" layout-align="start start">
+  <md-sidenav class="md-sidenav-left gw-sidebar" md-component-id="left" md-whiteframe="4"
+              md-is-locked-open="true" ng-show="TestTabCtrl.isOpen">
+    <md-toolbar layout="row" layout-align="space-between center">
+      <h3>Sidebar</h3>
+      <md-button ng-click="TestTabCtrl.close()">Close</md-button>
+    </md-toolbar>
+
+    <md-content>
+      <md-list>
+        <md-list-item ng-repeat="item in TestTabCtrl.items">
+          {{item}}
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </md-sidenav>
+
+  <div layout="column" flex>
+    <div flex="0">
+      <md-button ng-show="!TestTabCtrl.isOpen" ng-click="TestTabCtrl.open()">Show Sidebar</md-button>
+    </div>
+
+    <md-card ng-repeat="item in TestTabCtrl.items">
+      <md-card-title>
+        Title
+      </md-card-title>
+      <md-card-content>
+        Content
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

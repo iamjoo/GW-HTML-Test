@@ -8,6 +8,7 @@ const app = angular.module('mainApp', [
   'mainApp.controllers.build',
   'mainApp.controllers.dailyAchievements',
   'mainApp.controllers.index',
+  'mainApp.controllers.testTab',
   'mainApp.controllers.worlds',
   'mainApp.services.accounts',
   'mainApp.services.achievements',
@@ -47,5 +48,11 @@ app.config([
           templateUrl: 'account_info/account_info.html',
           controller: AccountInfoCtrl,
           controllerAs: 'AccountInfoCtrl',
+        })
+        .state('test-tab', {
+          url: '/testtab',
+          templateUrl: 'test_tab/test_tab.html',
+          controller: TestTabCtrl,
+          controllerAs: 'TestTabCtrl',
         });
 }]);
