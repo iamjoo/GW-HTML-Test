@@ -113,6 +113,7 @@ class AccountInfoCtrl {
       this.characters = characters.map((character) => new Character(character));
       this.getProfessionIcons_();
       this.getEquipment_();
+      this.getInventory_();
     });
   }
 
@@ -133,44 +134,59 @@ class AccountInfoCtrl {
     });
   }
 
+  /**
+   * Gets inventory.
+   * @private
+   */
   getInventory_() {
-    let items = new Map();
-    const index = 2;
-    this.characters[index].info.bags.forEach((bag) => {
-      bag.inventory.forEach((item) => {
-        if (!item) {
-          return;
-        }
+    this.characters.forEach((character) => {
+      // A mapping of item ID to an object that contains the item itself and its
+      // count.
+      // {itemId: {
+      //   item: // the item from the API
+      //   count: // the number of items the character has
+      // }}
+      let itemIdToObject = new Map();
 
-        if (!items.has(item.id)) {
-          const newItem = {
-            item: null,
-            count: 0,
-          };
+      // Populates the map
+      character.info.bags.forEach((bag) => {
+        bag.inventory.forEach((item) => {
+          if (!item) {
+            return;
+          }
 
-          items.set(item.id, newItem);
-        }
+          if (!itemIdToObject.has(item.id)) {
+            // The item property is initialized to null. It is later populated
+            // by an asynchronous API call.
+            const newItemObject = {
+              item: null,
+              count: 0,
+            };
 
-        items.get(item.id).count += item.count;
+            itemIdToObject.set(item.id, newItemObject);
+          }
+
+          itemIdToObject.get(item.id).count += item.count;
+        });
+      });
+
+      const requests = [];
+
+      // Retrieves the actual item info from the API.
+      itemIdToObject.forEach((itemObject, itemId) => {
+        const request = this.itemsService_.getItemInformation(itemId);
+        requests.push(request);
+
+        request.then((response) => {
+          itemObject.item = response;
+        });
+      });
+
+      // Finally sets the character's inventory property.
+      this.q_.all(requests).then(() => {
+        character.inventory = Array.from(itemIdToObject.values());
       });
     });
-
-    const requests = [];
-
-    items.forEach((item, itemId) => {
-      const request = this.itemsService_.getItemInformation(itemId);
-      requests.push(request);
-
-      request.then((response) => {
-        item.item = response;
-      });
-    });
-
-    this.q_.all(requests).then(() => {
-      console.log(items);
-    });
-
-    console.log(this.characters[index].info.name);
   }
 
   /**
