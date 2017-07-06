@@ -21,5 +21,8 @@ class Character {
 
     /** @type {!Equipment} */
     this.equipment;
+
+    /** @type {!Array<!Object>} */
+    this.inventory;
   }
 }
