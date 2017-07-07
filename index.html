@@ -15,7 +15,7 @@
     <title>GW2 Stuff</title>
   </head>
 
-  <body>
+  <body layout="column">
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
@@ -64,36 +64,26 @@
     <script src="components/util/models/character.js"></script>
     <script src="components/util/models/equipment.js"></script>
 
-    <md-toolbar>
-      <h2>Test</h2>
-    </md-toolbar>
+    <div layout="column" flex>
+      <md-toolbar>
+        <h2>Test</h2>
+      </md-toolbar>
 
-    <md-nav-bar md-selected-nav-item="build" nav-bar-aria-label="navigation links" ng-cloak>
-      <md-nav-item md-nav-sref="build" name="build">Build</md-nav-item>
-      <md-nav-item md-nav-sref="worlds" name="worlds">Worlds</md-nav-item>
-      <md-nav-item md-nav-sref="daily-achievements" name="daily-achievements">
-        Daily Achievements
-      </md-nav-item>
-      <md-nav-item md-nav-sref="account-info" name="account-info">
-        Account Info
-      </md-nav-item>
-      <md-nav-item md-nav-sref="test-tab" name="test-tab">
-        Test
-      </md-nav-item>
-    </md-nav-bar>
+      <md-nav-bar md-selected-nav-item="build" nav-bar-aria-label="navigation links" ng-cloak>
+        <md-nav-item md-nav-sref="build" name="build">Build</md-nav-item>
+        <md-nav-item md-nav-sref="worlds" name="worlds">Worlds</md-nav-item>
+        <md-nav-item md-nav-sref="daily-achievements" name="daily-achievements">
+          Daily Achievements
+        </md-nav-item>
+        <md-nav-item md-nav-sref="account-info" name="account-info">
+          Account Info
+        </md-nav-item>
+        <md-nav-item md-nav-sref="test-tab" name="test-tab">
+          Test
+        </md-nav-item>
+      </md-nav-bar>
 
-    <div ui-view>
+      <ui-view layout="column" flex></ui-view>
     </div>
-
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h4 class="navBar-header">Gem to Gold Exchange</h4>
-          <img src="http://www.gw2spidy.com/assets/v20150522v1/img/gem-exchange.png" />
-          <p>100 gems sell for {{ mainController.gemsToGold_Gold }} <img src="https://wiki.guildwars2.com/images/d/d1/Gold_coin.png" /> {{ mainController.gemsToGold_Silver }} <img src="https://wiki.guildwars2.com/images/3/3c/Silver_coin.png" /></p>
-          <p>100 gems cost {{ mainController.goldToGems_Gold }} <img src="https://wiki.guildwars2.com/images/d/d1/Gold_coin.png" /> {{ mainController.goldToGems_Silver }} <img src="https://wiki.guildwars2.com/images/3/3c/Silver_coin.png" /></p>
-        </div>
-      </div>
-    </div> -->
   </body>
 </html>
