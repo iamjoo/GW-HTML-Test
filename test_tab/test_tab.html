@@ -1,6 +1,5 @@
-<div layout="row" layout-align="start start">
-  <md-sidenav class="md-sidenav-left gw-sidebar" md-component-id="left" md-whiteframe="4"
-              md-is-locked-open="true" ng-show="TestTabCtrl.isOpen">
+<div layout="row">
+  <div class="gw-sidebar" md-whiteframe="4" ng-show="TestTabCtrl.isOpen" layout="column">
     <md-toolbar layout="row" layout-align="space-between center">
       <h3>Sidebar</h3>
       <md-button ng-click="TestTabCtrl.close()">Close</md-button>
@@ -13,20 +12,21 @@
         </md-list-item>
       </md-list>
     </md-content>
-  </md-sidenav>
+  </div>
 
-  <div layout="column" flex>
-    <div flex="0">
+  <md-content layout-padding flex>
+    <h3>Yay this is working</h3>
+    <div>
       <md-button ng-show="!TestTabCtrl.isOpen" ng-click="TestTabCtrl.open()">Show Sidebar</md-button>
     </div>
 
-    <md-card ng-repeat="item in TestTabCtrl.items">
+    <md-card ng-repeat="item in TestTabCtrl.items" flex>
       <md-card-title>
         Title
       </md-card-title>
       <md-card-content>
-        Content
+        {{item}}
       </md-card-content>
     </md-card>
-  </div>
+  </md-content>
 </div>
