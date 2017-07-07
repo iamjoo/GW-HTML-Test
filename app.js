@@ -1,4 +1,5 @@
 const app = angular.module('mainApp', [
+  'ngAnimate',
   'ngMaterial',
   'md.data.table',
   'ui.router',
