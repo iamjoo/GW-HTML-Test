@@ -14,7 +14,12 @@ html, body {
  * Sidebar styling
  */
 .gw-sidebar {
+  transition: transform 0.5s;
   width: 335px;
+}
+
+.gw-sidebar.ng-hide {
+  transform: translate(-100%);
 }
 
 /*
