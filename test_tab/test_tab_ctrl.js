@@ -3,9 +3,7 @@
  * @final
  */
 class TestTabCtrl {
-  constructor($mdSidenav) {
-    this.mdSidenav_ = $mdSidenav;
-
+  constructor() {
     this.items = [];
 
     this.isOpen = true;
