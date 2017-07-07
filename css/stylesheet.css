@@ -1,3 +1,8 @@
+html, body {
+  height: 100%;
+  position: relative;
+}
+
 /*
  * Icon styling
  */
@@ -8,8 +13,8 @@
 /*
  * Sidebar styling
  */
-gw-sidebar {
-
+.gw-sidebar {
+  width: 335px;
 }
 
 /*
