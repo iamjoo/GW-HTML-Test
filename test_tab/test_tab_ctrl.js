@@ -3,10 +3,13 @@
  * @final
  */
 class TestTabCtrl {
-  constructor() {
+  constructor($scope) {
+    this.scope_ = $scope;
     this.items = [];
 
     this.isOpen = true;
+
+    this.amount = 12000;
 
     this.init_();
   }
@@ -17,6 +20,13 @@ class TestTabCtrl {
 
   close() {
     this.isOpen = false;
+  }
+
+  onBlur() {
+    // this.amount = parseInt(this.amount, 10).toLocaleString();
+  }
+
+  onFocus() {
   }
 
   init_() {

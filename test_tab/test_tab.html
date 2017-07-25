@@ -16,6 +16,14 @@
 
   <md-content layout-padding flex>
     <h3>Yay this is working</h3>
+    <md-input-container>
+      <label>Amount</label>
+      <input types="text" name="amount" string-to-number ng-model="TestTabCtrl.amount"
+             ng-blur="TestTabCtrl.onBlur()" ng-focus="TestTabCtrl.onFocus()">
+      <div ng-messages="amount.$error">
+        <div ng-message="number">Please enter a number</div>
+      </div>
+    </md-input-container>
     <div>
       <md-button ng-show="!TestTabCtrl.isOpen" ng-click="TestTabCtrl.open()">Show Sidebar</md-button>
     </div>

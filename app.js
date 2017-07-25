@@ -11,6 +11,7 @@ const app = angular.module('mainApp', [
   'mainApp.controllers.index',
   'mainApp.controllers.testTab',
   'mainApp.controllers.worlds',
+  'mainApp.formatters.stringToNumber',
   'mainApp.services.accounts',
   'mainApp.services.achievements',
   'mainApp.services.build',
