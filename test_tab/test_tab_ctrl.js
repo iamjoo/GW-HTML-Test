@@ -3,8 +3,7 @@
  * @final
  */
 class TestTabCtrl {
-  constructor($scope) {
-    this.scope_ = $scope;
+  constructor() {
     this.items = [];
 
     this.isOpen = true;
