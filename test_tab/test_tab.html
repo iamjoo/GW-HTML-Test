@@ -28,6 +28,8 @@
       <md-button ng-show="!TestTabCtrl.isOpen" ng-click="TestTabCtrl.open()">Show Sidebar</md-button>
     </div>
 
+    <picker></picker>
+
     <md-card ng-repeat="item in TestTabCtrl.items" flex>
       <md-card-title>
         Title
@@ -36,5 +38,5 @@
         {{item}}
       </md-card-content>
     </md-card>
-  </md-content>
+    <a name="test"></a>
 </div>
