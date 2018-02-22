@@ -58,6 +58,20 @@ table.md-table td.md-cell.gw-Legendary {
 }
 
 /*
+ * Emoji picker styling
+ */
+#emoji-content {
+  background-color: #62A4DA;
+  height: 165px;
+  /*overflow-x: hidden;*/
+  /*overflow-y: auto;*/
+}
+
+.repeated-row {
+  height: 40px;
+}
+
+/*
  * Tooltip styling
  */
 .gw-tooltip {
