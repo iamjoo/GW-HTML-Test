@@ -24,11 +24,13 @@
         <div ng-message="number">Please enter a number</div>
       </div>
     </md-input-container>
-    <div>
-      <md-button ng-show="!TestTabCtrl.isOpen" ng-click="TestTabCtrl.open()">Show Sidebar</md-button>
+    <div ng-show="!TestTabCtrl.isOpen">
+      <md-button ng-shows="!TestTabCtrl.isOpen" ng-click="TestTabCtrl.open()">Show Sidebar</md-button>
     </div>
 
     <picker></picker>
+
+    <div contenteditable="true" id="gw-message-entry"></div>
 
     <md-card ng-repeat="item in TestTabCtrl.items" flex>
       <md-card-title>

@@ -69,6 +69,10 @@ constants.ItemType = {
   WEAPON: 'Weapon',
 };
 
+constants.Event = {
+  INSERT_EMOJI: 'insertEmoji',
+};
+
 constants.ALL = 'all';
 
 constants.API_KEY =

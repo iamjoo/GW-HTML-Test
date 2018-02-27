@@ -63,12 +63,24 @@ table.md-table td.md-cell.gw-Legendary {
 #emoji-content {
   background-color: #62A4DA;
   height: 165px;
-  /*overflow-x: hidden;*/
-  /*overflow-y: auto;*/
 }
 
-.repeated-row {
+.gw-repeated-emoji-row {
   height: 40px;
+}
+
+#gw-message-entry {
+  padding: 2px 2px 1px;
+  border-bottom: solid;
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+  border-radius: 1;
+  border-width: 0 0 1px;
+  outline: none;
+}
+
+#gw-message-entry:focus {
+  border-bottom-color: rgb(63, 81, 181);
+  border-width: 0 0 2px;
 }
 
 /*
