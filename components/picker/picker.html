@@ -1,11 +1,9 @@
-<div>
-  <!-- experiment for DOM manipulation -->
-  <!-- <div id="emoji-content">
-  </div> -->
-
+<md-card>
+  <div>{{PickerCtrl.header}}</div>
   <!-- md virtual repeat -->
   <md-virtual-repeat-container id="emoji-content" md-top-index="PickerCtrl.topIndex">
-    <div md-virtual-repeat="row in PickerCtrl.allEmojis" class="repeated-row">
+    <div md-virtual-repeat="row in PickerCtrl.allEmojis" class="gw-repeated-emoji-row"
+         ng-click="PickerCtrl.insertEmoji()">
       {{row}}
     </div>
   </md-virtual-repeat-container>
@@ -15,11 +13,11 @@
     <md-nav-item md-nav-click="PickerCtrl.changeTab('faces')" name="faces">
       Faces
     </md-nav-item>
-    <md-nav-item md-nav-click="PickerCtrl.changeTab('vehicles')" name="vehicles">
-      Vehicles
-    </md-nav-item>
     <md-nav-item md-nav-click="PickerCtrl.changeTab('animals')" name="animals">
       Animals
     </md-nav-item>
+    <md-nav-item md-nav-click="PickerCtrl.changeTab('vehicles')" name="vehicles">
+      Vehicles
+    </md-nav-item>
   </md-nav-bar>
-</div>
+</md-card>
