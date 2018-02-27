@@ -53,10 +53,13 @@ class TestTabCtrl {
     range.setEnd(selection.focusNode, index + 4);
     range.deleteContents();
 
-    // Create a new span and insert it where "test" used to be
-    const newSpan = document.createElement('span');
-    newSpan.textContent = 'new span';
-    range.insertNode(newSpan);
+    // Create a new img element and insert it where "test" used to be
+    const newImg = document.createElement('img');
+    newImg.setAttribute('class', 'gw-emoji-icon');
+    newImg.setAttribute(
+        'src',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Emoji_u263a.svg/128px-Emoji_u263a.svg.png');
+    range.insertNode(newImg);
 
     // Move caret to end of inserted span
     selection.collapseToEnd();

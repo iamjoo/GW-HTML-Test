@@ -83,6 +83,10 @@ table.md-table td.md-cell.gw-Legendary {
   border-width: 0 0 2px;
 }
 
+.gw-emoji-icon {
+  height: 15px;
+}
+
 /*
  * Tooltip styling
  */
