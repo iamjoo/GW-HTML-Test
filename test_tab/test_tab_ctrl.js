@@ -69,8 +69,8 @@ class TestTabCtrl {
     range.insertNode(newImg);
 
     const newRange = new Range();
-    newRange.setStart(messageEntry, range.startOffset + 1);
-    newRange.setEnd(messageEntry, range.startOffset + 1);
+    newRange.setStart(messageEntry, range.endOffset + 1);
+    newRange.setEnd(messageEntry, range.endOffset + 1);
     this.lastRange = newRange;
   }
 
