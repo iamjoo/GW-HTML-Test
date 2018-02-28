@@ -30,7 +30,8 @@
 
     <picker></picker>
 
-    <div contenteditable="true" id="gw-message-entry"></div>
+    <div contenteditable="true" id="gw-message-entry" ng-blur="TestTabCtrl.onMessageEntryBlur()">
+    </div>
 
     <md-card ng-repeat="item in TestTabCtrl.items" flex>
       <md-card-title>
