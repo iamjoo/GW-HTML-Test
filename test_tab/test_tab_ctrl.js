@@ -5,16 +5,22 @@
 class TestTabCtrl {
   /**
    * @param {!angular.$scope} $scope
+   * @param {!angular.$window} $window
+   * @param {!angular.$document} $document
    * @ngInject
    */
-  constructor($scope) {
+  constructor($scope, $window,  $document) {
+    this.window_ = $window;
+
+    this.document_ = $document[0];
+
     this.items = [];
 
     this.isOpen = true;
 
     this.amount = 12000;
 
-    this.lastRange;
+    this.lastRange_;
 
     this.init_();
 
@@ -36,22 +42,36 @@ class TestTabCtrl {
   onFocus() {
   }
 
-  onMessageEntryBlur() {
-    const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
+  onMessageEntryDivBlur() {
+    const selection = this.window_.getSelection();
+    const range = selection.getRangeAt(0).cloneRange();
     range.setStart(selection.focusNode, range.startOffset);
     range.setEnd(selection.focusNode, range.endOffset);
 
-    this.lastRange = range;
+    this.lastRange_ = range;
+    console.log('last range on blur: ' + this.lastRange_.toString());
   }
 
-  insertEmoji_() {
+  onMessageEntryInputBlur() {
+    // see HTMLTextAreaElement
+    console.log(this.document_.getElementById('gw-message-entry-input').selectionStart);
+    console.log(this.document_.getElementById('gw-message-entry-input').selectionEnd);
+  }
+
+  /**
+   * Inserts emoji.
+   * @param {!Event} event The event that was fired
+   * @param {string} arg The arg that was passed
+   * @private
+   */
+  insertEmoji_(event, arg) {
+    console.log('last range on insert: ' + this.lastRange_.toString());
     // This is a node
-    const messageEntry = document.getElementById('gw-message-entry');
+    const messageEntry = this.document_.getElementById('gw-message-entry');
     let range;
 
-    if (this.lastRange) {
-      range = this.lastRange;
+    if (this.lastRange_) {
+      range = this.lastRange_;
     } else {
       range = new Range();
       range.setStart(messageEntry, 0);
@@ -61,7 +81,7 @@ class TestTabCtrl {
     range.deleteContents();
 
     // Create a new img element and insert it where the cursor used to be
-    const newImg = document.createElement('img');
+    const newImg = this.document_.createElement('img');
     newImg.setAttribute('class', 'gw-emoji-icon');
     newImg.setAttribute(
         'src',
@@ -71,12 +91,12 @@ class TestTabCtrl {
     const newRange = new Range();
     newRange.setStart(messageEntry, range.endOffset + 1);
     newRange.setEnd(messageEntry, range.endOffset + 1);
-    this.lastRange = newRange;
+    this.lastRange_ = newRange;
   }
 
   replaceTextWithEmoji_() {
     // This is a node
-    const messageEntry = document.getElementById('gw-message-entry');
+    const messageEntry = this.document_.getElementById('gw-message-entry');
 
     // Move focus back to the message entry box
     messageEntry.focus();
@@ -96,7 +116,7 @@ class TestTabCtrl {
     range.deleteContents();
 
     // Create a new img element and insert it where "test" used to be
-    const newImg = document.createElement('img');
+    const newImg = this.document_.createElement('img');
     newImg.setAttribute('class', 'gw-emoji-icon');
     newImg.setAttribute(
         'src',

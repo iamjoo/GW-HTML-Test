@@ -115,7 +115,7 @@ class PickerCtrl {
    * Insert an emoji.
    */
   insertEmoji() {
-    this.scope_.$emit(constants.Event.INSERT_EMOJI);
+    this.scope_.$emit(constants.Event.INSERT_EMOJI, 'text');
   }
 
   /**
